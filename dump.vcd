@@ -1,0 +1,428 @@
+$date
+	Sun Aug 24 04:34:53 2025
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1s
+$end
+$scope module tb $end
+$var reg 1 ! Tx_Drive $end
+$var reg 4 " clk_div_rx [3:0] $end
+$var reg 4 # clk_div_tx [3:0] $end
+$var reg 1 $ clk_rx $end
+$var reg 1 % clk_tx $end
+$var reg 1 & rst $end
+$scope module Top_Module $end
+$var wire 1 ! Tx_Drive $end
+$var wire 4 ' clk_div_rx [3:0] $end
+$var wire 4 ( clk_div_tx [3:0] $end
+$var wire 1 $ clk_rx $end
+$var wire 1 % clk_tx $end
+$var wire 1 & rst $end
+$var wire 1 ) Tx_Serial $end
+$var wire 1 * Tx_Active $end
+$var wire 1 + Rx_Data $end
+$scope module uart_rx $end
+$var wire 1 $ clk $end
+$var wire 4 , clk_div [3:0] $end
+$var wire 1 & rst $end
+$var wire 1 ) Rx_Serial $end
+$var parameter 2 - s_Idle $end
+$var parameter 2 . s_Read $end
+$var parameter 2 / s_Start $end
+$var parameter 2 0 s_Stop $end
+$var reg 1 + Rx_Data $end
+$var reg 3 1 bit_indx [2:0] $end
+$var reg 4 2 count [3:0] $end
+$var reg 3 3 state [2:0] $end
+$upscope $end
+$scope module uart_tx $end
+$var wire 1 ! Tx_Drive $end
+$var wire 1 % clk $end
+$var wire 4 4 clk_div [3:0] $end
+$var wire 1 & rst $end
+$var parameter 3 5 s_DATA $end
+$var parameter 3 6 s_IDLE $end
+$var parameter 3 7 s_START $end
+$var parameter 3 8 s_STOP $end
+$var reg 1 * Tx_Active $end
+$var reg 1 ) Tx_Serial $end
+$var reg 3 9 bit_indx [2:0] $end
+$var reg 4 : count [3:0] $end
+$var reg 3 ; state [2:0] $end
+$upscope $end
+$upscope $end
+$scope begin $ivl_for_loop0 $end
+$var integer 32 < i [31:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+$comment Show the parameter values. $end
+$dumpall
+b11 8
+b1 7
+b0 6
+b10 5
+b11 0
+b1 /
+b10 .
+b0 -
+$end
+#0
+$dumpvars
+bx <
+b0 ;
+bx :
+bx 9
+b10 4
+b0 3
+bx 2
+bx 1
+b10 ,
+x+
+x*
+x)
+b10 (
+b10 '
+1&
+0%
+0$
+b10 #
+b10 "
+0!
+$end
+#2
+1+
+b0 2
+b0 1
+b0 9
+0*
+1)
+b0 :
+0&
+#4
+1&
+#5
+1$
+1%
+#10
+0$
+0%
+#15
+1$
+1%
+#20
+0$
+0%
+#24
+1!
+#25
+b1 ;
+1$
+1%
+#30
+0$
+0%
+#35
+0)
+b1 :
+1$
+1%
+#40
+0$
+0%
+#45
+b1 3
+1*
+b10 ;
+b0 :
+1$
+1%
+#50
+0$
+0%
+#55
+b10 3
+b1 2
+1)
+b1 :
+1$
+1%
+#60
+0$
+0%
+#65
+b1 1
+b0 2
+b1 9
+b0 :
+1$
+1%
+#70
+0$
+0%
+#75
+b1 2
+b1 :
+1$
+1%
+#80
+0$
+0%
+#85
+b10 1
+b0 2
+b10 9
+b0 :
+1$
+1%
+#90
+0$
+0%
+#95
+b1 2
+b1 :
+1$
+1%
+#100
+0$
+0%
+#105
+b11 1
+b0 2
+b11 9
+b0 :
+1$
+1%
+#110
+0$
+0%
+#115
+b1 2
+0)
+b1 :
+1$
+1%
+#120
+0$
+0%
+#125
+b100 1
+0+
+b0 2
+b100 9
+b0 :
+1$
+1%
+#130
+0$
+0%
+#135
+b1 2
+1)
+b1 :
+1$
+1%
+#140
+0$
+0%
+#145
+b101 1
+1+
+b0 2
+b101 9
+b0 :
+1$
+1%
+#150
+0$
+0%
+#155
+b1 2
+b1 :
+1$
+1%
+#160
+0$
+0%
+#165
+b110 1
+b0 2
+b110 9
+b0 :
+1$
+1%
+#170
+0$
+0%
+#175
+b1 2
+0)
+b1 :
+1$
+1%
+#180
+0$
+0%
+#185
+b111 1
+0+
+b0 2
+b111 9
+b0 :
+1$
+1%
+#190
+0$
+0%
+#195
+b1 2
+1)
+b1 :
+1$
+1%
+#200
+0$
+0%
+#205
+b11 3
+b0 2
+b11 ;
+b0 :
+1$
+1%
+#210
+0$
+0%
+#215
+b0 3
+1$
+1%
+#220
+0$
+0%
+#225
+b0 1
+1$
+1%
+#230
+0$
+0%
+#235
+1$
+1%
+#240
+0$
+0%
+#245
+1$
+1%
+#250
+0$
+0%
+#255
+1$
+1%
+#260
+0$
+0%
+#265
+1$
+1%
+#270
+0$
+0%
+#275
+1$
+1%
+#280
+0$
+0%
+#285
+1$
+1%
+#290
+0$
+0%
+#295
+1$
+1%
+#300
+0$
+0%
+#305
+1$
+1%
+#310
+0$
+0%
+#315
+1$
+1%
+#320
+0$
+0%
+#325
+1$
+1%
+#330
+0$
+0%
+#335
+1$
+1%
+#340
+0$
+0%
+#345
+1$
+1%
+#350
+0$
+0%
+#355
+1$
+1%
+#360
+0$
+0%
+#365
+1$
+1%
+#370
+0$
+0%
+#375
+1$
+1%
+#380
+0$
+0%
+#385
+1$
+1%
+#390
+0$
+0%
+#395
+1$
+1%
+#400
+0$
+0%
+#405
+1$
+1%
+#410
+0$
+0%
+#415
+1$
+1%
+#420
+0$
+0%
+#424
+b1000 <
