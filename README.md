@@ -1,1 +1,1 @@
-The `uart_tx` contains a variable `x_factor` which changes to 1, whenever the `data_in` variable is changed. This `x_factor` is used to handle/or start a new transmission whenever the `data_in` is changed without being concerned by `tick` non-synchronization of the `Tx_Drive` variable.
+The `uart_tx` contains a variable `x_factor` which changes to 1, whenever the `data_in` variable is changed. This `x_factor` is used to `handle`/`or start` a new transmission whenever the `data_in` is changed without being concerned by `tick` non-synchronization of the `Tx_Drive` variable.
