@@ -1,20 +1,20 @@
 module uart_tx (
-    input clk, Tx_Drive,
-    input [3:0] clk_div,
+    input tick, Tx_Drive,
+    input [7:0] data_in,
+    input [3:0] tick_div,
     input rst,
     output reg Tx_Serial, Tx_Active    
 );
 
     reg [3:0] count;
-    reg [2:0] bit_indx;
+    reg [3:0] bit_indx;
+    reg x_factor;
 
-    reg mem [0:7];
-    initial $readmemb("data_memory.bin", mem);
 
     parameter s_IDLE = 3'b000, s_START = 3'b001, s_DATA = 3'b010, s_STOP = 3'b011;
     reg [2:0] state = 3'b000;
 
-    always @(posedge clk or negedge rst) begin
+    always @(posedge tick or negedge rst) begin
         if(!rst) begin
             state <= s_IDLE;
             count <= 'b0;
@@ -28,21 +28,22 @@ module uart_tx (
                 count <= 'b0;
                 Tx_Serial <= 1'b1;
                 Tx_Active <= 1'b0;
+                bit_indx <= 'b0;
                 
-                if(!Tx_Drive | (Tx_Drive & bit_indx == 'b1)) 
-                    state <= s_IDLE;
-                else 
+                if(Tx_Drive & x_factor) 
                     state <= s_START;
+                else 
+                    state <= s_IDLE;
                 
             end
 
             s_START: begin
                 count <= count + 1'b1;
                 Tx_Serial <= 1'b0;
-                if (count == clk_div - 1'b1) begin
+                if (count == tick_div - 1'b1) begin
                     state <= s_DATA;
                     count <= 'b0;
-                    bit_indx <= 3'b000;
+                    bit_indx <= 'b0;
                     Tx_Active <= 1'b1;
                 end
                 else 
@@ -51,26 +52,30 @@ module uart_tx (
 
             s_DATA: begin
                 count <= count + 1'b1;
-                Tx_Serial <= mem[bit_indx];
+                Tx_Serial <= data_in[bit_indx];
                 
-                if (count == clk_div - 1'b1) begin
+                if (count == tick_div - 1'b1) begin
                     count <= 'b0;
                     if (bit_indx < 3'b111) begin
                         bit_indx <= bit_indx + 1'b1;
                         state <= s_DATA;
                     end else begin
                         state <= s_STOP;
+                        // count <= 'b0;
                     end
                 end
             end
 
 
             s_STOP: begin
-                if (count == clk_div - 'b1) begin
+                // count <= count + 1'b1;
+                // if (count == tick_div - 'b1) begin
                     Tx_Serial <= 1'b1;
                     Tx_Active <= 1'b0;
                     state <= s_IDLE;
-                end
+                    count <= 'b0;
+                    x_factor <= 1'b0;
+                // end
             end
 
             default: begin
@@ -79,43 +84,10 @@ module uart_tx (
             endcase
         end
     end
+
+    always @ (data_in) begin
+        x_factor = 1'b1;
+    end
+
+
 endmodule //uart_tx
-
-// module tb;
-//     reg clk, Tx_Drive;
-//     reg rst;
-//     reg [3:0] dvsr;
-    
-//     wire Tx_Serial, Tx_Active;
-
-//     uart_tx uut (clk, Tx_Drive, dvsr, rst, Tx_Serial, Tx_Active);
-
-//     initial begin
-//         clk     = 1;        
-//         Tx_Drive = 0;
-//         rst     = 1;
-//         dvsr    = 10;
-//         #2 rst  = ~rst;
-//         #2 rst  = ~rst;
-
-//         #100 Tx_Drive = 1'b1;
-
-//         #(dvsr * 100) 
-//         // for (integer i = 0; i<= 7; i = i+1) begin
-//         //     $display("%b", uut.mem[i]);
-//         // end
-//         $finish;
-//     end
-
-//     always #5 clk = !clk;
-
-//     initial begin
-//         $monitor(Tx_Serial);
-//     end
-
-//     initial begin
-//         $dumpfile("dump.vcd");
-//         $dumpvars(0, tb);
-//     end
-    
-// endmodule // uart_tx_tb
